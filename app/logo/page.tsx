@@ -76,7 +76,7 @@ export default function LogoPage() {
           frameCtx.drawImage(canvas, 0, 0, 500, 500);
           
           // Add frame to GIF
-          gif.addFrame(frameCanvas, { delay: frameDelay, copy: true });
+          gif.addFrame(frameCanvas, { delay: frameDelay });
           
           console.log(`Captured frame ${i + 1}/${totalFrames}`);
         }
