@@ -29,7 +29,7 @@ function LogoRing() {
 
   return (
     <mesh ref={meshRef} castShadow receiveShadow>
-      <torusGeometry args={[2.0, 0.35, 64, 256]} />
+      <torusGeometry args={[1.6, 0.28, 64, 256]} />
       <primitive object={material} attach="material" />
     </mesh>
   );
@@ -41,7 +41,7 @@ export default function HaloLogo({ onCanvasReady }: { onCanvasReady?: (canvas: H
     <div className="w-[500px] h-[500px] bg-transparent">
       <Canvas
         shadows
-        camera={{ position: [0, 0, 6], fov: 45 }}
+        camera={{ position: [0, 0, 8], fov: 35 }}
         gl={{ 
           preserveDrawingBuffer: true, 
           alpha: true,
@@ -55,30 +55,30 @@ export default function HaloLogo({ onCanvasReady }: { onCanvasReady?: (canvas: H
         }}
       >
         {/* Optimal lighting for logo */}
-        <ambientLight intensity={0.4} />
+        <ambientLight intensity={0.5} />
         <directionalLight 
           castShadow 
-          intensity={1.2} 
-          position={[5, 5, 5]} 
+          intensity={1.0} 
+          position={[4, 4, 6]} 
           shadow-mapSize-width={2048}
           shadow-mapSize-height={2048}
         />
         <spotLight 
-          intensity={2.5} 
-          position={[-3, 4, 2]} 
-          angle={0.4} 
-          penumbra={0.6} 
+          intensity={2.0} 
+          position={[-2, 3, 4]} 
+          angle={0.5} 
+          penumbra={0.7} 
           color="#c9a64b" 
           castShadow
         />
         <pointLight 
-          intensity={1.2} 
-          position={[2, -2, 3]} 
+          intensity={1.0} 
+          position={[2, -2, 5]} 
           color="#ffffff" 
         />
         <pointLight 
-          intensity={1.0} 
-          position={[0, 0, 3]} 
+          intensity={0.8} 
+          position={[0, 0, 5]} 
           color="#c9a64b" 
         />
         
