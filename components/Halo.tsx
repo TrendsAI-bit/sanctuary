@@ -6,10 +6,10 @@ import { useRef } from "react";
 import * as THREE from "three";
 
 /** Torus halo mesh */
-function Ring({ color = "#0a0a0a" }) {
+function Ring({ color = "#c9a64b" }) {
   const m = new THREE.MeshPhysicalMaterial({
-    color, metalness: 1, roughness: 0.35, clearcoat: 0.9, clearcoatRoughness: 0.1,
-    emissive: new THREE.Color(color), emissiveIntensity: 0.06
+    color, metalness: 0.8, roughness: 0.2, clearcoat: 1.0, clearcoatRoughness: 0.1,
+    emissive: new THREE.Color("#c9a64b"), emissiveIntensity: 0.15
   });
   return (
     <mesh castShadow receiveShadow>
@@ -45,14 +45,15 @@ function Swimmer({ speed = 0.6 }: { speed?: number }) {
 
 export default function HaloField() {
   return (
-    <div className="pointer-events-none fixed inset-0 -z-10">
+    <div className="pointer-events-none fixed inset-0 z-0">
       <Canvas shadows camera={{ position: [0, 0, 4], fov: 45 }}>
-        <ambientLight intensity={0.7} />
-        <directionalLight castShadow intensity={0.6} position={[3, 3, 5]} />
-        <spotLight intensity={0.8} position={[-4, 6, 3]} angle={0.4} penumbra={0.7} />
+        <ambientLight intensity={0.4} />
+        <directionalLight castShadow intensity={0.8} position={[5, 5, 5]} />
+        <spotLight intensity={1.2} position={[-3, 4, 2]} angle={0.3} penumbra={0.8} color="#c9a64b" />
+        <pointLight intensity={0.6} position={[2, -2, 3]} color="#ffffff" />
         <Swimmer />
-        <Environment preset="studio" />
-        <ContactShadows position={[0, -2, 0]} opacity={0.18} blur={2.2} far={3.5} />
+        <Environment preset="sunset" />
+        <ContactShadows position={[0, -2, 0]} opacity={0.25} blur={3} far={4} />
       </Canvas>
     </div>
   );

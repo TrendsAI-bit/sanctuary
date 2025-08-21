@@ -1,6 +1,6 @@
 export default function TopBar() {
   return (
-    <header className="sticky top-0 z-20 border-b border-black/5 bg-white/70 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-black/5 bg-white/70 backdrop-blur-md">
       <div className="container flex items-center justify-between py-3">
         <div className="flex items-center gap-3">
           <div className="h-5 w-5 rounded-full bg-gradient-to-b from-white to-black/70 shadow-halo" />

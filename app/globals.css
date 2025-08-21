@@ -15,3 +15,13 @@
   padding-right: 1.5rem; /* px-6 equivalent */
   max-width: 72rem; /* 6xl equivalent: 1152px */
 }
+
+/* Ensure 3D canvas is properly positioned */
+canvas {
+  display: block !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
