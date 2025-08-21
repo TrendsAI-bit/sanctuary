@@ -108,6 +108,11 @@ export default function Page() {
         <p className="mt-10 text-sm opacity-60">
           © {new Date().getFullYear()} The Sanctuary — a quiet place for spirit and light.
         </p>
+        <p className="mt-2 text-xs opacity-40">
+          <a href="/logo" className="hover:text-gold transition-colors">
+            Download Halo Logo
+          </a>
+        </p>
       </Section>
     </>
   );
