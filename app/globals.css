@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Smooth edges & selection */
+* { -webkit-tap-highlight-color: transparent; }
+::selection { background: rgba(201,166,75,.2); }
+
+/* Subtle container max width helper */
+.container { 
+  @apply mx-auto w-full px-6; 
+  max-width: 72rem; /* 6xl equivalent: 1152px */
+}
