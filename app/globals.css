@@ -8,6 +8,10 @@
 
 /* Subtle container max width helper */
 .container { 
-  @apply mx-auto w-full px-6; 
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  padding-left: 1.5rem; /* px-6 equivalent */
+  padding-right: 1.5rem; /* px-6 equivalent */
   max-width: 72rem; /* 6xl equivalent: 1152px */
 }

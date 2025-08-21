@@ -69,13 +69,13 @@ export default function Page() {
 
       <Section id="liturgy" title="Liturgy">
         <blockquote>
-          "In quietness and trust shall be your strength."
+          &ldquo;In quietness and trust shall be your strength.&rdquo;
         </blockquote>
         <blockquote>
-          "The light shines in the darkness, and the darkness has not overcome it."
+          &ldquo;The light shines in the darkness, and the darkness has not overcome it.&rdquo;
         </blockquote>
         <blockquote>
-          "Be still, and know."
+          &ldquo;Be still, and know.&rdquo;
         </blockquote>
       </Section>
 
