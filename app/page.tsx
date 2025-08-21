@@ -49,13 +49,13 @@ export default function Page() {
             >
               {showAltar ? "Close the Sanctuary" : "Enter the Sanctuary"}
             </button>
-            <a
-              href="https://x.com/"
-              target="_blank" rel="noreferrer"
-              className="rounded-full border border-ink/10 px-6 py-3 text-sm font-semibold hover:bg-white/60"
-            >
-              X Community
-            </a>
+                                   <a
+                         href="https://x.com/TheSanctuaryapp"
+                         target="_blank" rel="noreferrer"
+                         className="rounded-full border border-ink/10 px-6 py-3 text-sm font-semibold hover:bg-white/60"
+                       >
+                         X Community
+                       </a>
           </div>
         </motion.div>
       </section>
