@@ -106,8 +106,8 @@ export default function LogoPage() {
         console.log('GIF download initiated');
       });
 
-      gif.on('progress', (p: number) => {
-        const progress = Math.round(p * 100);
+      gif.on('progress', (p: unknown) => {
+        const progress = Math.round((p as number) * 100);
         setGifProgress(progress);
         console.log('GIF rendering progress:', progress + '%');
       });
