@@ -32,12 +32,6 @@ export default function Page() {
                        The Sanctuary is a clean, contemplative space. No noise. No clutter.
                        Only breath, presence, and a ring of stillness.
                      </p>
-                     <div className="mt-6 p-4 bg-gold/5 border border-gold/20 rounded-lg backdrop-blur-sm">
-                       <p className="text-xs text-gold/70 mb-1 uppercase tracking-wide">Sacred Key</p>
-                       <code className="text-gold font-mono text-sm md:text-base font-semibold break-all">
-                         7bSmt7MBhq3gsm9NvVcspNP3HU7meS8HeMz94sm9E777
-                       </code>
-                     </div>
           {showAltar && (
             <motion.p
               initial={{ opacity: 0, y: 10 }}
