@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import HaloLogo from "@/components/HaloLogo";
 
 export default function LogoPage() {
@@ -62,18 +63,18 @@ export default function LogoPage() {
 
       <div className="mt-8 text-center text-sm text-ink/60 max-w-md">
         <p>
-          The logo will automatically download once it's ready. You can also click the download button above.
+          The logo will automatically download once it&apos;s ready. You can also click the download button above.
           The image has a transparent background and is perfect for use as a logo or icon.
         </p>
       </div>
 
       <div className="mt-6">
-        <a
+        <Link
           href="/"
           className="text-gold hover:text-gold/80 text-sm font-medium"
         >
           ← Back to Sanctuary
-        </a>
+        </Link>
       </div>
     </div>
   );
