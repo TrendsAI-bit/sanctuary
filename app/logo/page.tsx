@@ -7,6 +7,7 @@ import HaloLogo from "@/components/HaloLogo";
 export default function LogoPage() {
   const [isReady, setIsReady] = useState(false);
   const [isRecordingGif, setIsRecordingGif] = useState(false);
+  const [gifProgress, setGifProgress] = useState(0);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   const handleDownload = (canvas: HTMLCanvasElement) => {
@@ -47,42 +48,75 @@ export default function LogoPage() {
         workers: 2,
         quality: 10,
         width: 500,
-        height: 500,
-        transparent: 0x000000
+        height: 500
       });
 
       const canvas = canvasRef.current;
-      const totalFrames = 60; // 2 seconds at 30fps
-      const frameDelay = 1000 / 30; // 30fps
+      const totalFrames = 48; // Reduced for better performance
+      const frameDelay = 100; // 100ms per frame = 10fps
+      const captureInterval = 50; // Capture every 50ms
 
-      // Capture frames over 2 seconds
+      console.log('Starting GIF capture...');
+
+      // Capture frames with better timing
       for (let i = 0; i < totalFrames; i++) {
-        await new Promise(resolve => setTimeout(resolve, frameDelay));
+        await new Promise(resolve => setTimeout(resolve, captureInterval));
         
-        // Create a frame canvas
+        // Create a frame canvas with exact dimensions
         const frameCanvas = document.createElement('canvas');
         frameCanvas.width = 500;
         frameCanvas.height = 500;
         const frameCtx = frameCanvas.getContext('2d');
         
         if (frameCtx) {
+          // Set transparent background
           frameCtx.clearRect(0, 0, 500, 500);
+          
+          // Draw the current frame from the 3D canvas
           frameCtx.drawImage(canvas, 0, 0, 500, 500);
-          gif.addFrame(frameCanvas, { delay: frameDelay });
+          
+          // Add frame to GIF
+          gif.addFrame(frameCtx, { delay: frameDelay, copy: true });
+          
+          console.log(`Captured frame ${i + 1}/${totalFrames}`);
         }
       }
 
+      console.log('All frames captured, rendering GIF...');
+
       gif.on('finished', (blob: Blob) => {
+        console.log('GIF rendering completed, blob size:', blob.size);
+        
+        // Create download link
+        const url = URL.createObjectURL(blob);
         const link = document.createElement('a');
+        link.href = url;
         link.download = 'sanctuary-halo-logo-animated.gif';
-        link.href = URL.createObjectURL(blob);
+        link.style.display = 'none';
+        
+        // Add to DOM, click, and remove
+        document.body.appendChild(link);
         link.click();
+        document.body.removeChild(link);
+        
+        // Clean up URL
+        setTimeout(() => URL.revokeObjectURL(url), 100);
+        
         setIsRecordingGif(false);
+        console.log('GIF download initiated');
       });
 
+      gif.on('progress', (p: number) => {
+        const progress = Math.round(p * 100);
+        setGifProgress(progress);
+        console.log('GIF rendering progress:', progress + '%');
+      });
+
+      // Start rendering
       gif.render();
     } catch (error) {
       console.error('Error creating GIF:', error);
+      alert('Error creating GIF: ' + error);
       setIsRecordingGif(false);
     }
   };
@@ -118,7 +152,10 @@ export default function LogoPage() {
             className="rounded-full border border-gold/30 bg-white px-6 py-3 text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-gold/5 hover:border-gold/50"
             disabled={!isReady || isRecordingGif}
           >
-            {isRecordingGif ? "Creating GIF..." : "Download GIF (Animated)"}
+            {isRecordingGif 
+              ? `Creating GIF... ${gifProgress}%` 
+              : "Download GIF (Animated)"
+            }
           </button>
         </div>
       </div>
