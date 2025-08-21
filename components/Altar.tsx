@@ -138,7 +138,7 @@ export default function Altar({ visible }: { visible: boolean }) {
   if (!visible) return null;
 
   return (
-    <group ref={groupRef} position={[0, -0.8, -1.5]}>
+    <group ref={groupRef} position={[0, -1, -1.5]}>
       {/* Altar base */}
       <AltarBase />
       
