@@ -4,6 +4,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { Environment, ContactShadows } from "@react-three/drei";
 import { useRef } from "react";
 import * as THREE from "three";
+import Altar from "./Altar";
 
 /** Torus halo mesh */
 function Ring({ color = "#c9a64b" }) {
@@ -43,7 +44,7 @@ function Swimmer({ speed = 0.6 }: { speed?: number }) {
   );
 }
 
-export default function HaloField() {
+export default function HaloField({ showAltar = false }: { showAltar?: boolean }) {
   return (
     <div className="pointer-events-none fixed inset-0 z-0">
       <Canvas shadows camera={{ position: [0, 0, 5], fov: 50 }}>
@@ -53,6 +54,7 @@ export default function HaloField() {
         <pointLight intensity={1.0} position={[2, -2, 3]} color="#ffffff" />
         <pointLight intensity={0.8} position={[0, 0, 2]} color="#c9a64b" />
         <Swimmer />
+        <Altar visible={showAltar} />
         <Environment preset="sunset" />
         <ContactShadows position={[0, -2, 0]} opacity={0.25} blur={3} far={4} />
       </Canvas>

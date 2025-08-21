@@ -1,15 +1,18 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import HaloField from "@/components/Halo";
 import Section from "@/components/Section";
 import TopBar from "@/components/TopBar";
 
 export default function Page() {
+  const [showAltar, setShowAltar] = useState(false);
+
   return (
     <>
       <TopBar />
-      <HaloField />
+      <HaloField showAltar={showAltar} />
 
       {/* HERO */}
       <section className="container relative flex min-h-[70vh] flex-col items-center justify-center text-center">
@@ -29,13 +32,23 @@ export default function Page() {
             The Sanctuary is a clean, contemplative space. No noise. No clutter.
             Only breath, presence, and a ring of stillness.
           </p>
-          <div className="mt-8 flex items-center justify-center gap-4">
-            <a
-              href="#visit"
-              className="rounded-full border border-ink/10 bg-white px-6 py-3 text-sm font-semibold shadow-sm hover:shadow-md"
+          {showAltar && (
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="mt-4 text-sm text-gold font-medium"
             >
-              Enter the Sanctuary
-            </a>
+              ✨ A sacred altar has appeared before you
+            </motion.p>
+          )}
+          <div className="mt-8 flex items-center justify-center gap-4">
+            <button
+              onClick={() => setShowAltar(!showAltar)}
+              className="rounded-full border border-ink/10 bg-white px-6 py-3 text-sm font-semibold shadow-sm hover:shadow-md transition-all duration-300 hover:bg-gold/5 hover:border-gold/20"
+            >
+              {showAltar ? "Close the Sanctuary" : "Enter the Sanctuary"}
+            </button>
             <a
               href="https://x.com/"
               target="_blank" rel="noreferrer"
